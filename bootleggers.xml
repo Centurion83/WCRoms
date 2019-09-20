@@ -1,51 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
-
-<remote  name="aosp"
-           fetch="https://android.googlesource.com/"
-           review="https://android-review.googlesource.com/" />
-
-
-  <remote name="WCRoms"
-          fetch="https://github.com/Centurion83/WCRoms"
-          revision="master" />
- 
-
-  <remote  name="github"
-           fetch="https://github.com/" />
-
-
-<remote  name="bootleggers"
-           fetch="https://github.com/BootleggersROM"
-           revision="pasta" />
-
-<remote  name="bootleggers-bff"
-           fetch="https://gitlab.com/BootleggersROMBig"
-           revision="pasta" />
-
- 
-  <remote  name="du"
-           revision="p9x"
-           fetch="https://github.com/DirtyUnicorns/"
-           review="gerrit.dirtyunicorns.com" />
-
-
- <remote  name="los"
-           fetch="https://github.com/LineageOS"
-           revision="refs/heads/lineage-16.0" />
-
-<default revision="refs/tags/android-9.0.0_r46"
-           remote="aosp"
-           sync-j="4" 
-           sync-c="true" />
-
-<!-- DU REPOS -->
-
-  <!-- General -->
-  <project path="bionic" name="android_bionic" remote="du" />
-  <project path="bootable/recovery" name="android_bootable_recovery" remote="du" />
-  <project path="build/make" name="android_build" remote="du" >
+  <project path="manifest" name="manifest" remote="bootleggers" />
+  <project path="art" name="art" groups="pdk" remote="bootleggers" />
+  <project path="bionic" name="bionic" groups="pdk" remote="bootleggers" />
+  <project path="bootable/recovery" name="bootable_recovery" groups="pdk" remote="bootleggers" />
+  <project path="build/make" name="build" groups="pdk" remote="bootleggers" >
     <copyfile src="core/root.mk" dest="Makefile" />
     <linkfile src="CleanSpec.mk" dest="build/CleanSpec.mk" />
     <linkfile src="buildspec.mk.default" dest="build/buildspec.mk.default" />
@@ -54,43 +14,58 @@
     <linkfile src="target" dest="build/target" />
     <linkfile src="tools" dest="build/tools" />
   </project>
-  <project path="build/kati" name="android_build_kati" remote="du" />
-  <project path="build/soong" name="android_build_soong" remote="du" >
+  <project path="build/soong" name="build_soong" groups="pdk,tradefed" remote="bootleggers" >
     <linkfile src="root.bp" dest="Android.bp" />
     <linkfile src="bootstrap.bash" dest="bootstrap.bash" />
   </project>
-  <project path="manifest" name="android_manifest" remote="du" />
+  <project path="external/google" name="external_google" groups="pdk" remote="bootleggers" />
+  <project path="frameworks/compile/mclinker" name="frameworks_compile_mclinker" groups="pdk,tradefed" remote="bootleggers" />
+  <project path="frameworks/opt/telephony" name="frameworks_opt_telephony" groups="pdk" remote="bootleggers" />
+  <project path="frameworks/av" name="frameworks_av" groups="pdk" remote="bootleggers" />
+  <project path="frameworks/base" name="frameworks_base" remote="bootleggers" />
+  <project path="frameworks/bootleggers" name="frameworks_bootleggers" remote="bootleggers" />
+  <project path="frameworks/native" name="frameworks_native" groups="pdk" remote="bootleggers" />
+  <project path="frameworks/opt/slimrecent" name="frameworks_opt_slimrecent" groups="pdk" remote="bootleggers" />
+  <project path="frameworks/opt/net/wifi" name="frameworks_opt_net_wifi" remote="bootleggers" />
+  <project path="frameworks/support" name="frameworks_support" groups="pdk" remote="bootleggers" />
+  <project path="hardware/lineage/livedisplay" name="android_hardware_lineage_livedisplay" remote="los"/>
+  <project path="hardware/bootleg/interfaces" name="hardware_bootleg_interfaces" remote="bootleggers" />
+  <project path="packages/apps/Bluetooth" name="android_packages_apps_Bluetooth" remote="los" />
+  <project path="packages/apps/BootlegDumpster" name="packages_apps_BootlegDumpster" groups="pdk-fs" remote="bootleggers" />
+  <project path="packages/apps/Contacts" name="packages_apps_Contacts" groups="pdk-fs" remote="bootleggers" />
+  <project path="packages/apps/Dialer" name="packages_apps_Dialer" remote="bootleggers" />
+  <project path="packages/apps/SmartNav" name="packages_apps_SmartNav" remote="bootleggers" />
+  <project path="packages/apps/SmartNavSettings" name="packages_apps_SmartNavSettings" remote="bootleggers" />
+  <project path="packages/apps/FMRadio" name="packages_apps_FMRadio" remote="bootleggers" />
+  <project path="packages/apps/Jelly" name="packages_apps_Jelly" remote="bootleggers" />
+  <project path="packages/apps/Launcher3" name="packages_apps_Launcher3" remote="bootleggers" />
+  <project path="packages/apps/Nfc" name="packages_apps_Nfc" remote="bootleggers" />
+  <project path="packages/apps/OmniStyle" name="packages_apps_OmniStyle" remote="bootleggers" />
+  <project path="packages/apps/Phonograph" name="packages_apps_Phonograph" remote="bootleggers" />
+  <project path="packages/apps/Recorder" name="packages_apps_Recorder" remote="bootleggers" />
+  <project path="packages/apps/Stk" name="packages_apps_Stk" remote="bootleggers" />
+  <project path="packages/apps/Settings" name="packages_apps_Settings" groups="pdk-fs" remote="bootleggers" />
+  <project path="packages/apps/ShishuOTA" name="packages_apps_ShishuOTA" remote="bootleggers" />
+  <project path="packages/overlays/Shishufied" name="packages_overlays_Shishufied" groups="pdk" remote="bootleggers" />
+  <project path="packages/apps/Snap" name="packages_apps_Snap" remote="bootleggers" />
+  <project path="packages/providers/MediaProvider" name="packages_providers_MediaProvider" groups="pdk-cw-fs,pdk-fs" remote="bootleggers" />
+  <project path="packages/providers/WeatherClient" name="packages_apps_WeatherClient" groups="pdk-cw-fs,pdk-fs" remote="bootleggers" />
+  <project path="packages/services/Telecomm" name="packages_services_Telecomm" groups="pdk-cw-fs,pdk-fs" remote="bootleggers" />
+  <project path="packages/services/Telephony" name="packages_services_Telephony" groups="pdk-cw-fs,pdk-fs" remote="bootleggers" />
+  <project path="prebuilts/build-tools" name="prebuilts_build-tools" remote="bootleggers" />
+  <project path="prebuilts/clang/host/linux-x86" name="prebuilts_clang_host_linux-x86" remote="bootleggers" clone-depth="1" />
+  <project path="system/bt" name="android_system_bt" remote="los" />
+  <project path="system/qcom" name="system_qcom" groups="pdk" remote="bootleggers" />
+  <project path="system/core" name="system_core" groups="pdk" remote="bootleggers-bff" />
+  <project path="system/extras" name="system_extras" groups="pdk" remote="bootleggers-bff" />
+  <project path="system/netd" name="system_netd" groups="pdk" remote="bootleggers" />
+  <project path="system/nfc" name="system_nfc" remote="bootleggers" />
+  <project path="system/sepolicy" name="system_sepolicy" groups="pdk" remote="bootleggers" />
+  <project path="system/vold" name="system_vold" groups="pdk" remote="bootleggers" />
+  <project path="vendor/bootleggers" name="vendor_bootleggers" remote="bootleggers" />
+  <project path="vendor/codeaurora/telephony" name="vendor_codeaurora_telephony" remote="bootleggers" />
 
-<!-- Frameworks -->
-  <project path="frameworks/av" name="android_frameworks_av" remote="du" />
-  <project path="frameworks/base" name="android_frameworks_base" remote="du" />
-  <project path="frameworks/compile/mclinker" name="android_frameworks_compile_mclinker" remote="du" />
-  <project path="frameworks/native" name="android_frameworks_native" remote="du" />
-  <project path="frameworks/opt/net/ims" name="android_frameworks_opt_net_ims" remote="du" />
-  <project path="frameworks/opt/net/wifi" name="android_frameworks_opt_net_wifi" remote="du" />
-  <project path="frameworks/opt/telephony" name="android_frameworks_opt_telephony" remote="du"/>
-
-<!-- Packages -->
-  <project path="packages/apps/Bluetooth" name="android_packages_apps_Bluetooth" remote="du" />
-  <project path="packages/apps/Changelog" name="android_packages_apps_Changelog" remote="du" />
-  <project path="packages/apps/CustomDoze" name="android_packages_apps_CustomDoze" remote="du" />
-  <project path="packages/apps/DocumentsUI" name="android_packages_apps_DocumentsUI" remote="du" />
-  <project path="packages/apps/DU-Tweaks" name="android_packages_apps_DU-Tweaks" remote="du" />
-  <project path="packages/apps/DU-Updater" name="android_packages_apps_DU-Updater" remote="du" />
-  <project path="packages/apps/EmergencyInfo" name="android_packages_apps_EmergencyInfo" remote="du" />
-  <project path="packages/apps/Launcher3" name="android_packages_apps_Launcher3" remote="du" />
-  <project path="packages/apps/Nfc" name="android_packages_apps_Nfc" remote="du" />
-  <project path="packages/apps/PackageInstaller" name="android_packages_apps_PackageInstaller" remote="du" />
-  <project path="packages/apps/Settings" name="android_packages_apps_Settings" remote="du" />
-  <project path="packages/apps/SettingsIntelligence" name="android_packages_apps_SettingsIntelligence" remote="du" />
-  <project path="packages/apps/WeatherClient" name="android_packages_apps_WeatherClient" remote="du" />
-  <project path="packages/providers/DownloadProvider" name="android_packages_providers_DownloadProvider" remote="du" />
-  <project path="packages/providers/MediaProvider" name="android_packages_providers_MediaProvider" remote="du" />
-  <project path="packages/services/Telecomm" name="android_packages_services_Telecomm" remote="du" />
-  <project path="packages/services/Telephony" name="android_packages_services_Telephony" remote="du" />
-
-
-<!-- HardWare QCOM -->
+  <!-- HardWare QCOM -->
   <project path="hardware/qcom/sdm845/bt" name="android_hardware_qcom_sdm845_bt" remote="los" />
   <project path="hardware/qcom/sdm845/data/ipacfg-mgr" name="android_hardware_qcom_sdm845_data_ipacfg-mgr" remote="los">
     <linkfile src="os_pickup.mk" dest="hardware/qcom/sdm845/Android.mk" />
@@ -102,7 +77,6 @@
   <project path="hardware/qcom/sdm845/thermal" name="android_hardware_qcom_sdm845_thermal" remote="los" />
   <project path="hardware/qcom/sdm845/vr" name="android_hardware_qcom_sdm845_vr" remote="los" />
   <project path="hardware/qcom/audio/default" name="android_hardware_qcom_audio" groups="qcom,qcom_audio" remote="los" />
-
 <!--  <project path="hardware/qcom/audio-caf/apq8084" name="android_hardware_qcom_audio" groups="qcom,qcom_audio" remote="los" revision="lineage-16.0-caf-8084" /> -->
   <project path="hardware/qcom/audio-caf/msm8916" name="android_hardware_qcom_audio" groups="qcom,qcom_audio" remote="los" revision="lineage-16.0-caf-8916" />
   <project path="hardware/qcom/audio-caf/msm8952" name="android_hardware_qcom_audio" groups="qcom,qcom_audio" remote="los" revision="lineage-16.0-caf-8952" />
@@ -149,7 +123,17 @@
   <project path="external/ant-wireless/ant_native" name="android_external_ant-wireless_ant_native" remote="los" />
   <project path="external/ant-wireless/ant_service" name="android_external_ant-wireless_ant_service" remote="los" />
   <project path="external/ant-wireless/antradio-library" name="android_external_ant-wireless_antradio-library" remote="los" />
-<!-- External -->
+
+  <!-- Packages -->
+
+  <!-- Device -->
+  <!--<project path="device/qcom/common" name="android_device_qcom_common" remote="los" revision="lineage-15.1" /> -->
+  <project path="device/qcom/sepolicy" name="device_qcom_sepolicy" remote="bootleggers" />
+  <project path="device/qcom/sepolicy-legacy" name="device_qcom_sepolicy-legacy" remote="bootleggers" />
+  <project path="device/bootleg/sepolicy" name="device_bootleg_sepolicy" remote="bootleggers" />
+  <project path="vendor/interfaces" name="vendor_interfaces" remote="bootleggers" />
+
+  <!-- External -->
   <project path="external/bash" name="android_external_bash" remote="los" />
   <project path="external/brctl" name="external_brctl" remote="bootleggers" />
 <!--  <project path="external/powertop" name="android_external_powertop" remote="los" revision="lineage-15.1" /> -->
@@ -210,9 +194,5 @@
   <project path="vendor/qcom/opensource/dataservices" name="android_vendor_qcom_opensource_dataservices" remote="los" />
   <project path="vendor/qcom/opensource/interfaces" name="android_vendor_qcom_opensource_interfaces" remote="los" />
 <!-- <project path="vendor/qcom/opensource/rcs-service" name="android_vendor_qcom_opensource_rcs-service" remote="los" /> -->
-
- <!-- Custom repos -->
-  <include name="snippets/delet.xml" />
-  <include name="snippets/WCRoms.xml" />
 
 </manifest>
