@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
-
+<!--aosp remote -->
 <remote  name="aosp"
            fetch="https://android.googlesource.com/"
            review="https://android-review.googlesource.com/" />
-
-
-  <remote name="WCRoms"
-          fetch="https://github.com/Centurion83/WCRoms"
-          revision="master" />
  
-
+<!-- Github remote -->
   <remote  name="github"
            fetch="https://github.com/" />
 
-
+<!-- bootleggers remote -->
 <remote  name="bootleggers"
            fetch="https://github.com/BootleggersROM"
            revision="pasta" />
@@ -24,13 +19,13 @@
            fetch="https://gitlab.com/BootleggersROMBig"
            revision="pasta" />
 
- 
+ <!-- DU remote -->
   <remote  name="du"
            revision="p9x"
            fetch="https://github.com/DirtyUnicorns/"
            review="gerrit.dirtyunicorns.com" />
 
-
+<!-- lineageos remote -->
  <remote  name="los"
            fetch="https://github.com/LineageOS"
            revision="refs/heads/lineage-16.0" />
