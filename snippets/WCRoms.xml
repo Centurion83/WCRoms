@@ -5,6 +5,11 @@
 <remote  name="aosp"
            fetch="https://android.googlesource.com/"
            review="https://android-review.googlesource.com/" />
+
+<!--WCRoms remote -->
+  <remote name="WCRoms"
+          fetch="https://github.com/Centurion83/WCRoms"
+          revision="master" />
  
 <!-- Github remote -->
   <remote  name="github"
